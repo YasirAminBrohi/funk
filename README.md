@@ -1,4 +1,4 @@
-# Funk — a fun VS Code extension that reacts when your code fails 💀
+# Funk — a fun VS Code extension that reacts when your code fails
 
 ![Funk](assets/funk.png)
 
@@ -12,7 +12,7 @@ failure, Funk instantly:
 Ship it to a teammate and every `SyntaxError`, `Segfault`, or `exit code 1` becomes a
 shared joke instead of a silent facepalm.
 
-> 📦 Install it as a `.vsix` and it works the second it's loaded — **default image and
+> Install it as a `.vsix` and it works the second it's loaded — **default image and
 > sound are bundled**, so nobody has to hunt for assets to test it.
 
 ---
@@ -39,16 +39,16 @@ shared joke instead of a silent facepalm.
 
 | Feature | Detail |
 | --- | --- |
-| 🔊 Reliable audio | Sound plays from the **extension host** (via `ffplay` or Windows Media Player on Windows, `afplay` on macOS, `ffplay`/`paplay`/`mpg123` on Linux) — not subject to the webview autoplay policy that silently blocks most webview audio tricks. |
-| 💀 Visual overlay | A dark, centered overlay in the editor area. VS Code can't draw floating UI above the whole workbench, so Funk covers the **editor column** and optionally **maximizes** it (`funk.coverEditor`), restoring your layout after. |
-| 🎬 6 animations | `shake`, `bounce`, `spin`, `zoom`, `shake-bounce` (default), `chaos`. |
-| 🖼 Custom image | Any PNG/JPG/GIF/SVG path. GIFs animate. Near-square images look best. |
-| 🔊 Custom sound | MP3 / WAV / OGG path. |
-| 🎛 Playback mode | All-in, image-only (silent), or sound-only. |
-| 🧯 Error summary | Echoes the first error-looking line (`ReferenceError: x is not defined`, `Traceback...`, `panic: ...`) — never a wall of output. Off with `funk.showTerminalErrors`. |
-| ⏳ Anti-spam | Cooldown (default 4s) + 1.5s identical-error dedupe: one failed command = one Funk. |
-| 📊 Status bar | `Funk: ON/OFF` — click to toggle. |
-| 🔒 Hardened webview | CSP `default-src 'none'`, resources only from whitelisted roots, one nonce'd inline script for playback fallback. |
+| Reliable audio | Sound plays from the **extension host** (via `ffplay` or Windows Media Player on Windows, `afplay` on macOS, `ffplay`/`paplay`/`mpg123` on Linux) — not subject to the webview autoplay policy that silently blocks most webview audio tricks. |
+| Visual overlay | A dark, centered overlay in the editor area. VS Code can't draw floating UI above the whole workbench, so Funk covers the **editor column** and optionally **maximizes** it (`funk.coverEditor`), restoring your layout after. |
+| 6 animations | `shake`, `bounce`, `spin`, `zoom`, `shake-bounce` (default), `chaos`. |
+| Custom image | Any PNG/JPG/GIF/SVG path. GIFs animate. Near-square images look best. |
+| Custom sound | MP3 / WAV / OGG path. |
+| Playback mode | All-in, image-only (silent), or sound-only. |
+| Error summary | Echoes the first error-looking line (`ReferenceError: x is not defined`, `Traceback...`, `panic: ...`) — never a wall of output. Off with `funk.showTerminalErrors`. |
+| Anti-spam | Cooldown (default 4s) + 1.5s identical-error dedupe: one failed command = one Funk. |
+| Status bar | `Funk: ON/OFF` — click to toggle. |
+| Hardened webview | CSP `default-src 'none'`, resources only from whitelisted roots, one nonce'd inline script for playback fallback. |
 
 ---
 
