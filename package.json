@@ -1,0 +1,174 @@
+{
+  "name": "funk",
+  "displayName": "Funk",
+  "description": "A fun VS Code extension that reacts when your code fails.",
+  "version": "1.1.0",
+  "publisher": "yasir",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yasir/funk.git"
+  },
+  "engines": {
+    "vscode": "^1.93.0",
+    "node": ">=18"
+  },
+  "categories": [
+    "Other",
+    "Games"
+  ],
+  "keywords": [
+    "fun",
+    "error",
+    "sound",
+    "animation",
+    "terminal"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "funk.test",
+        "title": "Funk: Test",
+        "category": "Funk"
+      },
+      {
+        "command": "funk.enable",
+        "title": "Funk: Enable",
+        "category": "Funk"
+      },
+      {
+        "command": "funk.disable",
+        "title": "Funk: Disable",
+        "category": "Funk"
+      },
+      {
+        "command": "funk.toggle",
+        "title": "Funk: Toggle",
+        "category": "Funk"
+      },
+      {
+        "command": "funk.reloadAssets",
+        "title": "Funk: Reload Assets",
+        "category": "Funk"
+      }
+    ],
+    "configuration": {
+      "title": "Funk",
+      "properties": {
+        "funk.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether Funk reacts to execution failures."
+        },
+        "funk.mode": {
+          "type": "string",
+          "default": "image-and-sound",
+          "enum": ["image-and-sound", "image-only", "sound-only"],
+          "enumDescriptions": [
+            "Show the image overlay AND play the sound (default)",
+            "Show the image overlay only (silent)",
+            "Play the sound only (no visual overlay)"
+          ],
+          "description": "What Funk should do on failure."
+        },
+        "funk.image": {
+          "type": "string",
+          "default": "",
+          "description": "Path to a custom image (PNG/JPG/GIF/SVG). Leave empty to use the built-in default."
+        },
+        "funk.sound": {
+          "type": "string",
+          "default": "",
+          "description": "Path to a custom sound file (MP3/WAV/OGG). Leave empty to use the built-in default."
+        },
+        "funk.duration": {
+          "type": "number",
+          "default": 3000,
+          "minimum": 500,
+          "maximum": 30000,
+          "description": "How long (ms) the Funk overlay stays on screen."
+        },
+        "funk.volume": {
+          "type": "number",
+          "default": 1,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Sound volume (0 to 1)."
+        },
+        "funk.animation": {
+          "type": "string",
+          "default": "shake-bounce",
+          "enum": [
+            "shake",
+            "bounce",
+            "spin",
+            "zoom",
+            "shake-bounce",
+            "chaos"
+          ],
+          "enumDescriptions": [
+            "Rapid left-right shaking",
+            "Bouncing up and down",
+            "Full rotation",
+            "Zoom in (with overshoot)",
+            "Shake and bounce combined (recommended)",
+            "Everything at once. Totally unhinged."
+          ],
+          "description": "Animation applied to the Funk image."
+        },
+        "funk.showTerminalErrors": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show a short error summary when Funk triggers."
+        },
+        "funk.cooldown": {
+          "type": "number",
+          "default": 4000,
+          "minimum": 0,
+          "maximum": 60000,
+          "description": "Minimum time (ms) between Funk reactions to avoid flooding."
+        },
+        "funk.detectTasks": {
+          "type": "boolean",
+          "default": true,
+          "description": "React when a task (e.g. build, npm scripts) exits with a non-zero code."
+        },
+        "funk.detectTerminal": {
+          "type": "boolean",
+          "default": true,
+          "description": "React when a terminal command exits with a non-zero code (requires shell integration)."
+        },
+        "funk.coverEditor": {
+          "type": "boolean",
+          "default": true,
+          "description": "Maximize the editor area while the Funk overlay is shown, so it covers as much of the screen as VS Code allows. VS Code cannot draw over side bars or the title bar."
+        },
+        "funk.triggerOnExitCode": {
+          "type": "boolean",
+          "default": true,
+          "description": "If false, only trigger on non-zero exit codes that also produce error-like output (reduces false positives from tools like grep or ls)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "npm run check:types && node esbuild.js",
+    "check:types": "tsc --noEmit",
+    "watch": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --target=node18 --sourcemap --watch",
+    "package": "vsce package",
+    "vscode:prepublish": "npm run compile -- --production",
+    "generate-assets": "node scripts/generate-assets.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.93.0",
+    "@vscode/vsce": "^3.3.1",
+    "esbuild": "^0.24.2",
+    "lamejs": "^1.2.1",
+    "typescript": "^5.9.3"
+  }
+}

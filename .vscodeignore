@@ -1,0 +1,16 @@
+.vscode/**
+src/**
+scripts/**
+node_modules/**
+dist/test/**
+esbuild.js
+tsconfig.json
+**/.commandcode
+**/*.map
+.gitignore
+*.png
+*.mp3
+*.jpg
+*.jpeg
+*.gif
+*.wav
